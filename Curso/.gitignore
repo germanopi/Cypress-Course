@@ -1,0 +1,9 @@
+node_modules
+# Ignora a pasta 'node_modules', que contém todas as dependências instaladas via npm.
+# Essa pasta é pesada e pode ser recriada a qualquer momento com 'npm install', 
+# então não há necessidade de enviá-la ao repositório.
+
+cypress.env.json
+# Ignora o arquivo 'cypress.env.json', usado pelo Cypress para armazenar variáveis de ambiente sensíveis,
+# como senhas, tokens de API, e URLs de ambientes de teste.
+# Manter esse arquivo fora do Git evita expor informações confidenciais.

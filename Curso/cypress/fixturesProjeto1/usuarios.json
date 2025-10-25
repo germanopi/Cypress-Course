@@ -1,0 +1,64 @@
+{
+  "usuarios": [
+    {
+      "name": "Ana Carolina Silva",
+      "email": "ana.carolina@alura.com.br",
+      "password": "Senha123"
+    },
+    {
+      "name": "Bruno Henrique Costa",
+      "email": "bruno.hc@alura.com.br",
+      "password": "Senha456"
+    },
+    {
+      "name": "Carla Mariana Oliveira",
+      "email": "carla.mariana@alura.com.br",
+      "password": "Senha789"
+    },
+    {
+      "name": "Daniel Souza Ribeiro",
+      "email": "daniel.ribeiro@alura.com.br",
+      "password": "Senha321"
+    },
+    {
+      "name": "Eduardo Lima Pereira",
+      "email": "eduardo.lima@alura.com.br",
+      "password": "Senha654"
+    },
+    {
+      "name": "Fernanda Gomes",
+      "email": "fernanda.gomes@alura.com.br",
+      "password": "Senha987"
+    },
+    {
+      "name": "Gustavo Almeida",
+      "email": "gustavo.almeida@alura.com.br",
+      "password": "Senha111"
+    },
+    {
+      "name": "Helena Rocha",
+      "email": "helena.rocha@alura.com.br",
+      "password": "Senha222"
+    },
+    {
+      "name": "Igor Martins",
+      "email": "igor.martins@alura.com.br",
+      "password": "Senha333"
+    },
+    {
+      "name": "Juliana Freitas",
+      "email": "juliana.freitas@alura.com.br",
+      "password": "Senha444"
+    },
+    {
+      "name": "Kaio Pedro Santos",
+      "email": "kaio.santos@alura.com.br",
+      "password": "Senha555"
+    },
+    {
+      "name": "Larissa Nunes",
+      "email": "larissa.nunes@alura.com.br",
+      "password": "Senha666"
+    }
+  ]
+}

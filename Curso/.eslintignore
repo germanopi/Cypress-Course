@@ -1,0 +1,18 @@
+# .eslintignore — define os arquivos e diretórios que o ESLint deve ignorar durante a análise.
+
+cypress/results/**
+# Ignora todos os arquivos dentro de 'cypress/results'.
+# Essa pasta normalmente contém relatórios gerados automaticamente (por exemplo, relatórios do Mochawesome),
+# que não precisam ser verificados pelo ESLint.
+
+cypress/videos/**
+# Ignora todos os vídeos gravados durante a execução dos testes do Cypress.
+# Esses vídeos são grandes e binários, então o ESLint não deve tentar analisá-los.
+
+web/
+# Ignora toda a pasta 'web', possivelmente contendo código de front-end compilado
+# (como o resultado de um build React, Vue, etc.), que não deve ser verificado pelo ESLint.
+
+server/
+# Ignora toda a pasta 'server', geralmente usada para o backend (Node.js ou API).
+# Caso o ESLint esteja configurado apenas para os testes Cypress, essa exclusão evita conflitos.

@@ -1,0 +1,435 @@
+git init 
+git clone <URL>
+npm init 
+npm install -g cypress 
+npx cypress open 
+npx cypress run // executa diretamente no terminal do vscode sem interface gráfica 
+npx cypress run --spec "./cypress\e2e\login-correto.cy.js" // executa diretamente no terminal do vscode sem interface gráfica 
+npm install --save-dev mochawesome // framework para geração de relatório
+npm i cypress-plugin-api
+npx cypress run --reporter mochawesome // executa diretamente no terminal do vscode sem interface gráfica gerando um relatorio
+npm install eslint --save-dev
+npm install eslint-plugin-cypress --save-dev 
+npm init @eslint/config
+npm rum lint
+cd server : npm install e start
+cd web : npm install e start
+
+Passo 1: Planejar os testes que irão para o projeto 
+Passo 2: Criar o design dos testes 
+Passo 3: Configurar o ambiente de teste
+Passo 4: Executar os testes
+Passo 5: Analisar os resultados
+
+--------------------
+O que é Cypress?
+
+Cypress é uma ferramenta robusta multiplataforma para testar a interface do usuário de aplicações web de forma automatizada,  Test End 2 End (E2E) que simula a interação de um usuário . Isso significa que, em vez de você mesmo clicar em todos os botões e preencher todos os formulários para ver se tudo está funcionando, o Cypress pode fazer isso, por você, automaticamente!
+
+O framework de código aberto é voltado para testes no front-end. A ferramenta foi pensada para profissionais que atuam com quality assurance (QA), ou garantia de qualidade, e também ganha espaço entre pessoas desenvolvedoras devido às facilidades no trabalho com testes automatizados.
+
+De forma geral, a ferramenta funciona envelopando (comportamento que chamamos de wrapper) as consultas no DOM com uma lógica robusta de retry-and-timeout (repetição e tempo limite) que se adapta ao funcionamento de aplicativos web no mundo real.
+
+Por baixo dos panos, o Cypress atua de forma simbiótica com o ecossistema Node.js. A automatização de testes com Cypress, funciona da seguinte forma:
+
+Inicia o processo de execução em um servidor Node.js;
+O servidor, por sua vez, se comunica com o runner (o executor) de testes para executar o código da aplicação e do teste no mesmo ciclo de eventos.
+Ou seja, o código automatizado e o código da aplicação compartilham a mesma plataforma!
+
+Graças a sua API, o Cypress possui nativamente acesso a múltiplos Objetos JavaScript como window, document,XMLHttpRequest , elementos do DOM, Storage, funções, Timer, etc. Isso ocorre através de uma comunicação direta, pois o Cypress não precisa converter objetos em uma forma serializada para transmiti-los entre o navegador e o Node.js, tornando a comunicação mais rápida e eficiente. Esse processo de comunicação difere o Cypress de outras tecnologias para automatização de testes, como o Selenium.
+--------------------
+O que é a Pirâmide de Testes?
+A pirâmide de testes é um modelo conceitual que descreve a distribuição ideal dos diferentes tipos de testes ao longo do ciclo de desenvolvimento de software. Ela foi introduzida por Mike Cohn em seu livro "Succeeding with Agile" e tem sido amplamente adotada na indústria de desenvolvimento de software.
+
+A ideia central da pirâmide de testes é que a maioria dos testes deve ser automatizada e focada em baixo nível, como testes unitários. Por outro lado, os testes de alto nível, como os testes de interface do usuário, devem ser menos numerosos e mais direcionados para validar o comportamento do sistema como um todo. Vamos entender cada componente que ela apresenta!
+
+Componentes da Pirâmide de Testes
+A pirâmide de testes é composta por três camadas principais, vamos entender melhor cada uma delas:
+
+Testes Unitários: verificam o comportamento de unidades individuais de código, como funções ou métodos. Eles são rápidos de escrever e executar, e ajudam a garantir a correção e a robustez do código em um nível granular. São considerados testes de baixo nível.
+Testes de Integração: verificam a interação entre diferentes componentes do sistema. Eles garantem que os módulos funcionem corretamente juntos e que a integração entre eles seja suave e sem problemas. Também são considerados testes de baixo nível.
+Testes de Aceitação do Usuário e E2E: validam o comportamento do sistema do ponto de vista do usuário final. Esse tipo está no topo da pirâmide e são considerados testes de alto nível. Eles simulam interações do usuário com a interface do usuário e verificam se o sistema se comporta conforme o esperado. Embora esses testes sejam mais lentos e complexos de implementar, são essenciais para validar o comportamento do sistema como um todo e garantir que atenda aos requisitos do usuário.
+Para aplicar efetivamente a pirâmide de testes, é importante entender que ela sugere uma cobertura abrangente de testes em todos os níveis, garantindo que todos os aspectos críticos do software sejam testados de forma adequada. Sendo assim, existem algumas boas práticas para seguir nesse processo:
+
+Comece com testes Unitários: escreva testes unitários para cada unidade de código logo após sua implementação. Isso ajuda a identificar e corrigir problemas rapidamente, antes que eles se propaguem para outras partes do sistema.
+Implemente testes de Integração: à medida que os componentes do sistema são desenvolvidos, escreva testes de integração para garantir que funcionem corretamente juntos. Isso ajuda a identificar falhas na comunicação entre os módulos e garante a estabilidade do sistema como um todo.
+Automatize os Testes E2E: embora os testes de ponta-a-ponta sejam importantes, eles podem ser mais lentos e normalmente possuem um custo maior do que os testes de baixo nível. Automatize-os com moderação e priorize os testes de menor nível sempre que possível.
+Mantenha um equilíbrio entre os testes: a pirâmide de testes não deve ser interpretada de forma rígida. É importante encontrar um equilíbrio entre os diferentes tipos de testes, levando em consideração as necessidades e os requisitos específicos do projeto.
+
+Em resumo, os testes de componente são usados para testar componentes individuais do software de forma isolada. Isso permite que os desenvolvedores testem as funcionalidades de um componente específico sem depender de outros componentes ou módulos do software. Eles costumam ser mais rápidos de se executar e mais fáceis de depurar.
+
+Já os testes End-to-End(E2E) são usados para testar a integração de várias partes do software em um fluxo completo de uso. Eles simulam a interação do usuário com o software, verificando se as várias partes do sistema funcionam em conjunto de maneira adequada. Os testes E2E são mais demorados e difíceis de depurar do que os testes de componente, mas fornecem uma visão geral do funcionamento do software como um todo.
+--------------------
+
+O Cypress oferece uma variedade de comandos para interagir com elementos da página. Dois desses comandos fundamentais são get e contains, ambos usados para selecionar elementos, mas de maneiras diferentes. Vamos explorar as distinções entre eles para entender quando e como utilizá-los adequadamente.
+
+Comando get:
+
+O comando get é usado para selecionar elementos com base em seu seletor CSS. Isso significa que você especifica um seletor CSS para identificar o elemento desejado na página. Por exemplo, se você tem um botão com uma classe CSS de .btn, você pode selecioná-lo com cy.get('.btn').
+
+Uso típico: cy.get() é geralmente usado quando você sabe exatamente qual elemento está procurando e tem um identificador específico para ele, como uma classe, ID ou seletor único.
+
+Cuidados ao utilizar o .get: Certifique-se de usar seletor CSS específicos e únicos para evitar capturar elementos indesejados. Seletores CSS genéricos podem levar a testes frágeis e propensos a quebras com pequenas alterações no código.
+
+Comando contains:
+
+O comando contains é usado para localizar um elemento com base em seu conteúdo de texto. Em vez de especificar um seletor CSS, você fornece um texto que o elemento deve conter. Por exemplo, cy.contains('button', 'Submit') selecionará um botão que contém o texto "Submit".
+
+Uso típico: cy.contains() é útil quando você precisa encontrar um elemento com base em seu texto visível, especialmente quando não tem um identificador exclusivo como uma classe ou ID.
+
+Cuidados ao utilizar o contains: Tenha cuidado ao usar cy.contains() em páginas com muitos elementos similares ou com texto repetido, pois pode selecionar um elemento diferente do desejado se não for usado com precisão.
+
+Diferenças Chave:
+
+get seleciona elementos com base em seletor CSS;
+contains seleciona elementos com base em seu conteúdo de texto;
+get é mais preciso e seletivo quando você tem identificadores únicos;
+contains é útil para encontrar elementos com base em texto visível, mesmo que não haja identificadores exclusivos.
+Tanto get quanto contains são ferramentas valiosas no kit de ferramentas do Cypress, cada uma com seu propósito e casos de uso distintos. Ao compreender as diferenças entre eles, você pode escolher o comando mais apropriado para suas necessidades de teste, garantindo testes eficazes e confiáveis em suas aplicações web.
+-----------------------------------
+Realizar testes em modo headless (ou sem cabeça) significa não precisar de uma interface gráfica para interagir com o navegador. Consequentemente, os testes rodam mais rápido e podem ser executados a partir de ferramentas de integração contínua (CI) como Jenkins ou dentro de um container Docker, por exemplo.
+
+Os testes em modo headless e a integração contínua são complementares porque se baseiam em princípios semelhantes de automação e garantia de qualidade, além de se apoiarem mutuamente para proporcionar um fluxo de desenvolvimento mais eficiente e confiável. Vamos explorar como essas duas abordagens se complementam:
+
+1 - Automação de Testes em Modo Headless:
+
+Os testes em modo headless permitem que os testes sejam executados sem uma interface gráfica, o que resulta em tempos de execução mais rápidos e uso eficiente de recursos;
+Esses testes automatizados podem cobrir uma ampla gama de cenários de teste, desde navegação básica até interações complexas do usuário, garantindo a funcionalidade e integridade da aplicação;
+Ao utilizar o modo headless, os testes podem ser facilmente integrados em pipelines de CI/CD, pois não exigem intervenção manual para execução.
+2 - Integração Contínua:
+
+A CI é uma prática de desenvolvimento que envolve a execução automatizada de testes e integração de código sempre que há uma alteração no repositório de código;
+A integração de testes em um pipeline de CI permite que a equipe receba feedback rápido sobre a qualidade do código, identificando problemas o mais cedo possível no ciclo de desenvolvimento;
+A CI promove a automação completa do processo de desenvolvimento, desde a construção até os testes e implantação, garantindo que cada alteração de código seja testada de forma consistente e confiável.
+E como as duas abordagens se complementam?
+
+Os testes em modo headless fornecem uma base sólida para a automação de testes, permitindo que os testes sejam executados rapidamente e de forma eficiente.
+
+A integração desses testes em um pipeline de CI permite que sejam executados automaticamente sempre que há uma alteração no código, proporcionando feedback imediato sobre a integridade do código.
+
+Ao combinarem-se, os testes em modo headless e a CI garantem que a equipe de desenvolvimento possa iterar rapidamente, identificando e corrigindo problemas de forma proativa, enquanto mantêm um alto padrão de qualidade de código.
+
+Os testes em modo headless e a integração contínua se complementam ao proporcionar uma abordagem abrangente para automação de testes e garantia de qualidade. Ao integrar essas práticas em um fluxo de trabalho de desenvolvimento, as equipes podem acelerar o ciclo de desenvolvimento, garantindo ao mesmo tempo a estabilidade e confiabilidade do software entregue.
+
+Para executar os testes em “headless mode”, utilizamos o comando npx cypress run. 
+
+----------------------------------
+
+O Mocha é um framework de testes JavaScript, que pode ser utilizado tanto nos projetos back-end (rodando no Node.JS) quanto nos projetos front-end (rodando diretamente no browser), para diversos tipos de teste, seja BDD (Behavior Driven Development ou em tradução, Desenvolvimento Guiado por Comportamento) ou TDD (Test Driven Development ou Desenvolvimento Orientado por Testes), síncrono ou assíncrono, usando o gerador de relatório que mais se adequa ao projeto.
+
+O Mochawesome é justamente um gerador personalizado de relatório, utilizado em conjunto com o Mocha. Com ele podemos fazer configurações, verificar se o log será gerado em HTML, json, onde será gerado, qual o formato de data para ser utilizado no nome, o título, dentre outros parâmetros. Vamos detalhar alguns dos principais no arquivo cypress.config.js
+
+const { defineConfig } = require("cypress");
+
+module.exports = defineConfig({
+  projectId: "f5nnsk",
+  e2e: {
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+    },
+    video: true,
+    reporter: 'mochawesome',
+    reporterOptions: {
+      reportDir: 'cypress/results',
+      overwrite: false,
+      html: true,
+      json: false,
+      timestamp: "mmddyyyy_HHMMss" }
+    },
+});
+
+“video”: definimos a gravação em vídeo do teste para posterior playback.
+“reporter”: essa propriedade define o padrão de geração de relatórios. Configurando como padrão no arquivo cypress.config.js, sempre que o comando npx cypress run for disparado, o tipo de relatório gerado será do Mochawesome, mesmo que não seja incluído a opção --reporter mochawesome.
+“reportDir”: diretório padrão onde serão gerados os relatórios.
+“overwrite”: caso não se inclua um timestamp, o relatório padrão é gerado com o nome mochawesome.json ou mochawesome.html. Para esses casos, definimos se o relatório será sobrescrito ou não.
+“html”: passamos o parâmetro true ou false para indicar se o relatório será gerado em formato HTML.
+“json”: passamos o parâmetro true ou false para indicar se o relatório será gerado em formato HTML.
+“timestamp”: formato de apresentação do relatório com relação à data e hora.
+Ainda há outras configurações:
+
+“charts”: dá a possibilidade de gerar gráficos quando unificamos os resultados.
+“code”: mostra exatamente qual o código foi executado tanto na falha quanto no sucesso.
+“reportTitle”: o título a ser apresentado no relatório.
+Além do pacote mochawesome, pode-se instalar também o mochawesome-merge, que unifica todos os arquivos .json de relatório em apenas um, denominado output.json. E para ficar visualmente melhor, o mochawesome-report-generator, que é outro pacote, que transforma o arquivo .json em um arquivo .html.
+
+--------------------
+O termo API (Application Programming Interface ou, em português, Interface de Programação de Aplicações) é amplamente utilizado quando se trata de desenvolvimento e teste de software. É muito importante que você conheça esses principais termos, entenda-os melhor, para que possa sempre estar antenado às melhorias referentes a esses assuntos quando houver novas versões do Cypress.
+
+As APIs desempenham um papel crucial no desenvolvimento de software moderno, permitindo a comunicação eficiente entre diferentes sistemas e componentes. No contexto dos testes end-to-end (E2E), as APIs são fundamentais para garantir que a interação entre os diversos elementos de um aplicativo funcione corretamente. Este artigo explora a importância das APIs nos testes E2E e como elas podem ser efetivamente utilizadas para melhorar a qualidade e a confiabilidade dos sistemas de software.
+
+Em um cenário de teste E2E, várias partes de um aplicativo são testadas em conjunto para garantir que todo o sistema funcione conforme o esperado. Isso envolve simular o comportamento do usuário real, desde a interação com a interface do usuário até a comunicação com o backend do aplicativo por meio de APIs.
+
+As APIs são componentes essenciais nesse processo, pois permitem que os testes interajam diretamente com o backend do aplicativo, consultando dados, enviando solicitações e verificando respostas. Ao testar uma aplicação E2E, os testes podem validar não apenas a interface do usuário, mas também a integração e o funcionamento adequado das APIs subjacentes.
+-------------------
+No processo de elaboração e execução dos testes é muito comum nos depararmos com erros randômicos, conhecidos como flaky tests. Esses erros que acontecem de forma aleatória, não necessariamente são falhas. Isso porque ao iniciarmos o processo de automação E2E, por exemplo, programamos os scripts em nossa máquina local, executando os testes exclusivamente e tudo parece funcionar corretamente. Porém, ao executá-los num ambiente diferente, isso pode ter um resultado diferente.
+
+O conceito de "flaky" acontece porque o mesmo código apresenta resultados de falha e sucesso, sem que haja nenhuma alteração. Isso geralmente acontece por conta de alguns fatores, como: dependência de código de terceiros, comportamentos não-determinísticos, concorrência de processos, falta de atualização de dados entre passagens de testes, diferença de fuso horário, dependência na ordem de execução de testes, entre outros.
+
+Manter testes que falham na suíte de testes pode ser extremamente prejudicial pois fere a confiança nos testes. Sendo assim, deve-se fazer o máximo para evitá-los. A identificação desse tipo de problema ocorre comparando os resultados de testes apresentados, após várias passagens de teste.
+
+Caso você use o dashboard do Cypress na versão paga, ele já fornece essa análise. Algumas dicas que podem ser úteis para evitar os flaky tests:
+
+1 - Se a falha for por diferença de tempo nos diversos ambientes, considere colocar pontos de espera, orientado a algum evento e não com tempo fixo;
+
+2 - Verificar se as variáveis de ambiente estão configuradas corretamente para cada tipo de ambiente onde o teste será executado;
+
+3 - Verificar se a ferramenta de teste automatizado que você está usando dá suporte a rerun ou reteste, que é um recurso que permite que a ferramenta rode novamente o teste em caso de falha, para verificar se numa segunda tentativa vai dar certo. Isso é normalmente configurável por teste;
+
+4 - Se for alguma situação de teste que compare data ou hora, tente usar alguma constante para retornar esse valor e não depender da hora/data real do ambiente, que pode estar diferente;
+
+5 - Caso seja algum teste que faz uma chamada a alguma API externa ou de terceiros, considere usar um mock para ter um controle melhor sobre a resposta que será devolvida.
+
+Flaky tests não devem estar na suíte de testes. Se não for possível corrigi-lo, considere remover o teste ou pensar em outra alternativa para verificar esse resultado.
+-----------------
+Já aprendemos muito sobre o Cypress e percebemos que ele oferece uma variedade de recursos poderosos para facilitar o desenvolvimento e execução de testes automatizados. Para tentar recapitular e resumir, listamos a seguir alguns desses principais recursos:
+
+Para os testes E2E:
+
+Execução em tempo real: é possível visualizar as alterações na sua aplicação enquanto os testes são executados, facilitando a depuração e o feedback instantâneo.
+Comandos intuitivos: API simples e fácil de aprender, com comandos que refletem ações reais do usuário, como click(), type() e visit().
+Auto-espera inteligente: o Cypress gerencia automaticamente os elementos DOM, eliminando a necessidade de comandos explícitos de espera.
+Recarga automática: possui suporte para recarga automática da página após alterações no código, permitindo testes contínuos sem interrupções.
+Depuração e Solução de Problemas:
+
+DevTools integrado: é possível acessar o DevTools do navegador diretamente no Cypress para depuração avançada e análise de problemas.
+Logs detalhados: possui uma fácil visualização de logs detalhados com informações sobre cada comando executado, facilitando a identificação de falhas.
+Facilita a documentação de testes: capturar screenshots e vídeos automaticamente durante a execução dos testes para documentação e análise de falhas.
+Timeouts personalizáveis: disponibiliza a opção de definir timeouts específicos para cada comando, evitando esperas desnecessárias e otimizando a execução dos testes.
+Debugger avançado: o debugger integrado para analisar passo a passo a execução dos testes e identificar problemas de forma precisa.
+Facilidade de Uso e Integração:
+
+Suporte a múltiplos navegadores: é possível realizar testes em diversos navegadores simultaneamente, como Chrome, Firefox, Edge e Safari.
+Integração com CI/CD: realiza integração perfeita com ferramentas de CI/CD como Jenkins, GitLab CI e Azure DevOps.
+Comunidade ativa: possui uma comunidade ativa que pode te ajudar com fóruns, tutoriais e documentação abrangente para auxiliar no aprendizado e na resolução de problemas.
+Outros Recursos:
+
+Testes de API: disponibiliza suporte para testes de API RESTful com comandos específicos para validação de respostas e manipulação de dados.
+Comandos personalizados: é possível criar seus próprios comandos para automatizar tarefas repetitivas e aumentar a eficiência dos testes.
+Testes paralelos: realiza testes em paralelo para otimizar o tempo de execução e aumentar a produtividade.
+Reutilização de código: possui funções e arquivos JavaScript para compartilhar código entre diferentes testes.
+Tags e filtros: dispõe de ferramentas para organizar e filtrar seus testes por tags para facilitar a execução e o gerenciamento.
+Embora o Cypress seja pensado para Testes End-to-end e de Componentes, você também pode realizar testes de integração e de unidade.
+Além disso tudo, partir das versões mais novas, o Cypress atualizou a forma de encontrar os elementos via DOM, o que aprimorou a estabilidade dos testes, ajudando a reduzir os Flaky tests (testes intermitentes). Algo que faz parte da arquitetura do Cypress, vamos entender melhor?
+
+A arquitetura da ferramenta permite sua utilização via app do cypress, que roda em um navegador controlado por ele mesmo, e é excelente para aplicação de metodologias como o desenvolvimento orientado a testes (Test-Driven Development, ou TDD).
+
+Além disso, aliado a integração contínua, o Cypress disponibiliza o Cypress Cloud para centralização de documentação, facilitando a interação entre equipes e mantendo a transparência acerca dos testes.
+
+Esses são apenas alguns dos principais recursos que o Cypress oferece . Sua combinação de facilidade de uso, poder e capacidade de visualização em tempo real o torna uma escolha popular para equipes de desenvolvimento e QA.
+------------
+Trabalhar com dublês (ou stubs) em testes com Cypress pode ser uma prática muito útil para simular comportamentos específicos de APIs ou de interações com o backend. Aqui estão algumas boas práticas essenciais para trabalhar com dublês no Cypress:
+
+Isolamento dos testes: é importante garantir que os testes sejam independentes uns dos outros e que não compartilhem estado. Isso significa que cada teste deve configurar suas próprias simulações de dublês e não depender de configurações ou resultados de outros testes.
+Utilização de aliases: o Cypress permite criar aliases (ou apelidos) para interceptações de chamadas de rede, o que facilita a referência a esses interceptadores em diferentes partes do teste. Utilize aliases significativos e descritivos para facilitar a compreensão do teste.
+Centralização das configurações: se possível, centralize a configuração de dublês em um único local, como um arquivo commands.js ou um módulo separado. Isso torna mais fácil reutilizar as configurações de dublês em vários testes e mantê-las atualizadas.
+Abstração de chamadas de rede: para evitar a repetição de código e manter os testes mais legíveis, considere criar funções ou métodos auxiliares para configurar dublês específicos. Isso ajuda a abstrair a complexidade das chamadas de rede e facilita a manutenção dos testes.
+Cobertura de diferentes cenários: certifique-se de configurar dublês para cobrir uma variedade de cenários, incluindo casos de sucesso, falhas e respostas inesperadas. Isso ajuda a garantir que os testes sejam robustos e capazes de lidar com diferentes situações durante a execução.
+Validação de respostas: sempre valide as respostas recebidas pelos dublês para garantir que elas correspondam ao comportamento esperado do sistema. Isso ajuda a garantir a integridade dos testes e a identificar problemas de integração ou configuração.
+Limpeza de interceptações: ao final de cada teste, limpe as interceptações de chamadas de rede para garantir que elas não interfiram nos testes subsequentes. Use o método cy.intercept() com o parâmetro { times: 0 } para garantir que uma interceptação seja chamada zero vezes e seja removida.
+Ao seguir essas boas práticas, você estará mais bem preparado para trabalhar com dublês no Cypress de forma eficiente e confiável, ajudando a garantir a qualidade e estabilidade dos seus testes de integração.
+-----------------
+Quando lidamos com testes de software, diversos tipos de problemas podem surgir, impactando a confiabilidade e a eficácia dos testes. Aqui estão alguns dos principais tipos de problemas que podem ocorrer nos testes:
+
+Falsos positivos: ocorre quando um teste falha erroneamente, indicando que há um defeito no software quando, na verdade, o software está funcionando corretamente. Isso pode ser causado por problemas na implementação do teste, ambiente de execução inconsistente ou flutuações nos dados de entrada.
+Falsos negativos: ocorre quando um teste passa erroneamente, indicando que não há defeitos no software quando, na verdade, o software possui problemas. Isso pode ser causado por falhas na cobertura dos casos de teste, condições de teste insuficientes ou problemas na assertiva do teste.
+Flaky tests (testes instáveis): produzem resultados inconsistentes, ou seja, eles podem passar ou falhar de forma intermitente, mesmo quando o código não foi alterado. Isso pode ser causado por dependências externas, como serviços de terceiros ou APIs, falhas na limpeza do estado do ambiente de teste ou concorrência entre testes.
+Testes lentos: levam muito tempo para serem executados, prejudicando a produtividade dos desenvolvedores e a eficiência dos processos de integração contínua. Isso pode ser causado por testes complexos, acesso a recursos externos lentos, ou falta de otimização nos cenários de teste.
+Testes redundantes: cobrem os mesmos casos de uso ou funcionalidades do software, sem adicionar valor adicional à cobertura de teste. Isso pode ocorrer devido à falta de coordenação entre equipes de teste, falta de revisão de testes existentes ou excesso de zelo na criação de novos testes.
+Testes frágeis: quebram facilmente com pequenas alterações no código-fonte, exigindo atualizações frequentes para manter a estabilidade. Isso pode ser causado por dependência excessiva de detalhes de implementação, falta de isolamento de unidades de teste ou falta de modularidade nos testes.
+Testes não determinísticos: são aqueles cujo resultado pode variar de uma execução para outra, mesmo com as mesmas condições de entrada e ambiente. Isso pode ser causado por dependências externas não controladas, como o estado do banco de dados ou o tempo de resposta da rede, ou por concorrência entre threads.
+Em resumo, é essencial identificar e resolver esses tipos de problemas nos testes de software. Isso pode envolver a revisão e aprimoramento dos casos de teste, a implementação de práticas de teste robustas e a utilização de ferramentas adequadas para monitorar e gerenciar a qualidade dos testes.
+---------------
+Vamos conferir algumas etapas para automatizar os testes de regressão a seguir:
+
+Identificação dos casos de teste de regressão: comece identificando os casos de teste que são críticos para a funcionalidade da aplicação e que precisam ser verificados repetidamente para garantir que não haja regressões. Isso pode incluir casos de teste para as funcionalidades principais da aplicação e cenários de uso comuns.
+Escolha das ferramentas de automação de teste: existem várias ferramentas disponíveis para automatizar testes de regressão, como Selenium, Cypress, TestComplete, Robot Framework, entre outras. Escolha uma ferramenta que atenda às necessidades específicas do seu projeto, como suporte à linguagem de programação preferida, integração com outras ferramentas de desenvolvimento, entre outros fatores.
+Desenvolvimento dos scripts de teste automatizado: com base nos casos de teste identificados, desenvolva scripts de teste automatizados usando a ferramenta selecionada. Os scripts devem simular as interações do usuário com a aplicação, verificando se as funcionalidades estão funcionando conforme o esperado e se não há regressões.
+Execução dos testes automatizados: configure os testes automatizados para serem executados regularmente, de preferência após cada nova alteração no código. Isso pode ser feito como parte de um pipeline de integração contínua (CI), garantindo que os testes sejam executados automaticamente sempre que houver uma nova versão do software.
+Análise dos resultados dos testes: após a execução dos testes automatizados, analise os resultados para identificar falhas, regressões ou problemas de desempenho. Registre e priorize os problemas encontrados para que possam ser corrigidos pela equipe de desenvolvimento.
+Manutenção dos testes automatizados: à medida que a aplicação evolui e novas funcionalidades são adicionadas, é importante manter os scripts de teste automatizados atualizados para refletir essas mudanças. Isso pode envolver a criação de novos testes de regressão e a atualização dos existentes conforme necessário.
+Automatizar testes de regressão ajuda a garantir a estabilidade e a qualidade do software, permitindo que a equipe de desenvolvimento identifique rapidamente e corrija problemas potenciais antes que eles afetem os usuários finais.
+----------------
+Ferramentas de teste e análise estática se tornaram aliadas preciosas para garantir a qualidade do código. Nesse sentido, o Eslint é uma ferramenta de análise estática de código para identificar padrões problemáticos no código JavaScript, e sua utilização com o Cypress permite que pessoas desenvolvedoras e testers voltem sua atenção a melhorias relacionadas ao código, pois realiza a análise de padrões e formatação fora do ambiente de execução.
+
+Por que usar Eslint com Cypress?
+O Eslint, por si só, auxilia a manter um código limpo, legível e livre de erros. Ele pode identificar problemas como erros de sintaxe, variáveis não utilizadas, padrões de código inseguros e muito mais. Integrá-lo com o Cypress adiciona uma camada adicional de garantia de qualidade aos testes automatizados.
+
+Ao usar o Eslint com o Cypress, a equipe de desenvolvimento pode:
+
+Manter padrões de código consistentes: o Eslint permite definir e aplicar padrões de código consistentes em todo o projeto, garantindo que todos os desenvolvedores sigam as mesmas práticas de codificação. Isso é especialmente útil em projetos de grande escala, nos quais múltiplos desenvolvedores estão contribuindo.
+Identificar problemas de código rapidamente: o Eslint pode identificar problemas de código enquanto você escreve, antes mesmo de executar os testes com o Cypress. Isso significa que os erros podem ser corrigidos imediatamente, reduzindo o tempo necessário para identificar e corrigir problemas mais tarde.
+Evitar problemas de qualidade no código de Teste: os testes automatizados escritos com Cypress são código, e como tal, também podem conter erros. Usar o Eslint nos arquivos de teste do Cypress ajuda a garantir que esses arquivos também sigam os padrões de qualidade estabelecidos.
+Integre com seu fluxo de trabalho de desenvolvimento: para obter o máximo benefício, integre a execução do Eslint no seu fluxo de trabalho de desenvolvimento. Isso pode incluir a execução do Eslint como parte de um script npm, a integração com o seu IDE para verificar o código em tempo real, ou a configuração de gatilhos de pré-commit para verificar o código antes de fazer um commit.
+Ao manter padrões de código consistentes e identificar problemas de código rapidamente, os desenvolvedores podem aumentar a confiabilidade e a eficácia de seus aplicativos. Dessa forma, ao integrar o Eslint com o Cypress, é possível melhorar a qualidade do código e dos testes automatizados em projetos de desenvolvimento web.
+----------------
+No Cypress, é possível selecionar o navegador em que os testes serão executados usando a opção browser dentro do bloco it. it('Digita e-mail e senha corretos para efetuar o login', { browser: 'firefox' }, () => { 
+Benefícios da seleção do navegador
+Selecionar o navegador com o Cypress oferece vários benefícios, incluindo:
+Compatibilidade: testar o aplicativo em diferentes navegadores ajuda a garantir que ele funcione corretamente em uma variedade de ambientes de usuário.
+Validação de Layout: diferentes navegadores podem interpretar o layout de uma página da web de maneira ligeiramente diferente. Ao testar em múltiplos navegadores, você pode garantir uma consistência adequada no layout do aplicativo.
+Desempenho: alguns recursos do aplicativo podem se comportar de maneira diferente em diferentes navegadores. Testar em navegadores variados ajuda a identificar e resolver possíveis problemas de desempenho.
+Selecionar o navegador com o Cypress é uma prática importante para garantir a qualidade e a confiabilidade dos testes de automação. Ao definir o navegador específico em que os testes serão executados, os desenvolvedores podem identificar e corrigir problemas de compatibilidade e desempenho, garantindo uma experiência consistente para os usuários finais. Incorporar essa prática em sua estratégia de teste Cypress pode ajudar a melhorar a qualidade geral do seu aplicativo e proporcionar uma experiência de usuário mais robusta.
+------------------
+Na automação de testes de aplicativos da web, a interação com elementos de seleção, como campos suspensos (dropdowns) e botões de seleção (radio buttons), é uma parte fundamental do processo de teste. O Cypress oferece uma variedade de métodos para capturar e interagir com esses elementos de forma eficiente. Vamos conhecer alguns?
+
+Capturando elementos de campo de seleção suspensa
+Os campos de seleção suspensa, comumente conhecidos como dropdowns, permitem que os usuários escolham uma opção de uma lista suspensa de valores. No Cypress, capturar e interagir com esses elementos é objetivo. 
+cy.get('select').select('JavaScript') Este comando seleciona a opção cujo texto é "JavaScript" dentro do campo de seleção.
+
+ Os botões de seleção do tipo radio permitem que os usuários escolham uma única opção de um conjunto de opções mutuamente exclusivas. No Cypress, você pode capturar e interagir com esses botões de maneira intuitiva.
+cy.get('[type="radio"]').first().check() Este comando verifica o primeiro botão de seleção do tipo radio encontrado na página.
+----------------
+Plugins são como pequenos módulos de software que expandem as funcionalidades de uma aplicação principal. No contexto do Cypress, uma ferramenta de automação de testes amplamente utilizada para testar aplicativos da web, os plugins desempenham um papel crucial na personalização e extensão das capacidades do Cypress.
+
+O Papel dos plugins
+Os plugins são uma parte fundamental do ecossistema do Cypress. Eles permitem que os usuários personalizem e estendam o comportamento do Cypress de acordo com suas necessidades específicas. Os plugins podem ser usados para uma variedade de propósitos, desde a execução de tarefas antes ou depois dos testes até a integração com outras ferramentas e serviços.
+
+Tipos de plugins
+Plugins de comandos: estes plugins permitem que os desenvolvedores criem novos comandos personalizados que podem ser usados nos testes Cypress. Isso é útil para abstrair a lógica complexa e reutilizável em toda a suíte de testes, como o Cypress commands.
+Plugins de suporte: os plugins de suporte são usados para configurar o ambiente de teste antes da execução dos testes ou para realizar tarefas após a conclusão dos testes. Eles podem ser usados para configurar variáveis de ambiente, inicializar o estado do aplicativo ou limpar dados de teste, como o Cypress EsLint Plugin.
+Plugins de reports: estes plugins são responsáveis por gerar relatórios de teste personalizados, fornecendo insights valiosos sobre o desempenho e a integridade do aplicativo. Eles podem integrar-se com ferramentas de CI/CD (Integração Contínua/Entrega Contínua) ou sistemas de gerenciamento de testes, como o Cypress terminal-report.
+Plugins de integração: os plugins de integração permitem que o Cypress se integre facilmente com outras ferramentas e serviços. Isso pode incluir integrações com serviços de nuvem, ferramentas de monitoramento ou frameworks de teste, como o Plugin cypress githu-action.
+Os plugins desempenham um papel essencial na personalização e extensão das capacidades do Cypress. Eles permitem que os desenvolvedores adaptem o Cypress às necessidades específicas de seus projetos e integrem-se facilmente com outras ferramentas e serviços. Com uma comunidade ativa e uma variedade de plugins disponíveis, o Cypress oferece uma experiência flexível e poderosa para automação de testes de aplicativos da web.
+---------------------
+A evolução do desenvolvimento de software trouxe consigo a necessidade de garantir a qualidade do código por meio de testes automatizados. Testar APIs é uma parte crucial desse processo, pois assegura que as interfaces de programação de aplicativos funcionem conforme o esperado, independentemente das mudanças no código ou nas dependências.
+
+No cenário atual de desenvolvimento de aplicativos web, as APIs GraphQL ganharam destaque devido à sua flexibilidade e eficiência. Elas permitem que os clientes solicitem exatamente os dados de que precisam, reduzindo a sobrecarga de rede e simplificando a integração entre front-end e back-end. No entanto, testar APIs GraphQL pode ser desafiador devido à sua natureza dinâmica e aos diferentes tipos de consultas que podem ser feitas.
+
+É aqui que entra o Cypress, uma ferramenta de automação de testes de front-end amplamente utilizada. Embora o Cypress seja conhecido principalmente por testar aplicativos da web, ele também pode ser usado para testar APIs, incluindo APIs GraphQL.
+
+Por que usar Cypress para testar APIs GraphQL?
+O Cypress oferece várias vantagens para testar APIs GraphQL:
+
+Fácil configuração: o Cypress é fácil de configurar e usar, tornando-se uma escolha atraente para equipes de desenvolvimento.
+
+Suporte a JavaScript: como a maioria das APIs GraphQL é acessada por meio de requisições HTTP, o Cypress, que é baseado em JavaScript, é uma escolha natural, pois permite realizar solicitações e assertivas de forma simples e direta.
+
+Integração com testes de front-end: se sua aplicação web utiliza GraphQL para interagir com o back-end, você pode testar tanto o front-end quanto as APIs GraphQL em um único ambiente, proporcionando uma visão mais abrangente do funcionamento do sistema.
+
+Ambiente de desenvolvimento unificado: com o Cypress, você pode escrever testes para sua aplicação e para suas APIs no mesmo ambiente de desenvolvimento, o que simplifica a manutenção e a colaboração da equipe.
+----------------------
+Explorando o Debugging de Testes com Cypress
+
+Durante a escrita dos testes automatizados é natural que também ocorram erros. Assim, é necessário o debugging do código, ou seja, entender e corrigir o erro. O JavaScript fornece alguns recursos como o console.log(), que imprime no console valores, retornos , mensagens, dentre outros.
+
+No entanto, embora o Cypress seja baseado em JavaScript, além do console.log(), a ferramenta apresenta comandos como comandos cy.log(), cy.debugger() e cy.debug() para realizar a depuração do código e otimizar os testes.
+
+Vamos conferir alguns recursos que permitem analisar o estado da aplicação, rastrear a execução do teste e capturar informações relevantes durante a execução dos testes. debugging de testes oferecidos pelo Cypress:
+
+1. Utilizando cy.log()
+O comando cy.log() é útil para registrar mensagens durante a execução dos testes. Você pode usá-lo para registrar informações importantes sobre o estado do teste e as ações realizadas.
+2. Utilizando o debug()
+O comando debug() permite pausar a execução do teste e abrir o console do navegador no ponto desejado. Isso facilita a inspeção do estado do aplicativo e a execução de comandos Cypress e JavaScript diretamente no contexto do teste.
+Além das técnicas mencionadas, aqui estão algumas melhores práticas para debugging eficaz com Cypress:
+
+Use cy.log() de forma criteriosa: evite registrar mensagens excessivas durante a execução dos testes. Use cy.log() apenas para informações relevantes e críticas para o debugging.
+Escolha pontos de debug estratégicos: decida cuidadosamente onde colocar pontos de log e debug em seus testes para obter insights valiosos sem interromper a execução do teste desnecessariamente.
+Utilize cy.debugger() ou cy.debug() quando necessário: use esses comandos para pausar a execução do teste e inspecionar o estado do aplicativo quando precisar de uma análise mais detalhada.
+A depuração desempenha um papel fundamental no desenvolvimento de software, incluindo testes automatizados. A prática é essencial para identificar e corrigir falhas, entender o comportamento do aplicativo durante a execução dos testes e otimizar a eficácia dos testes automatizados.
+
+O Cypress oferece uma variedade de recursos poderosos para debugging de testes automatizados, incluindo os comandos cy.log(), cy.debugger() e cy.debug(). Ao aplicar essas técnicas avançadas e seguir as melhores práticas recomendadas, os desenvolvedores podem identificar e corrigir problemas rapidamente durante o desenvolvimento de testes automatizados com Cypress, garantindo a confiabilidade e a eficácia dos testes.
+----------------------
+Quando se trata de testar aplicações front-end com Cypress, a capacidade de simular comportamentos de APIs e outros serviços externos é crucial para garantir testes eficazes e independentes.
+
+Vamos explorar o uso de mocks e stubs com Cypress, discutindo as diferenças entre eles, suas melhores práticas de uso e estratégias avançadas para criar testes robustos e confiáveis.
+
+Entendendo Mocks e Stubs
+Mocks: é uma simulação de um objeto ou serviço que pode ser configurado para retornar valores específicos ou simular comportamentos durante os testes. Em termos de API, um mock pode ser usado para simular uma resposta de API para uma solicitação HTTP, permitindo que os testes sejam executados sem depender de um servidor real.
+
+Stubs: é semelhante a um mock, mas é mais focado em substituir partes específicas de um sistema durante os testes. Um stub pode ser usado para substituir uma função ou método real por uma versão simulada que retorna valores predefinidos.
+
+Melhores Práticas para Uso de Mocks e Stubs com Cypress
+Identifique dependências externas: antes de começar a escrever testes com mocks e stubs, é importante identificar as dependências externas que precisam ser simuladas. Isso pode incluir APIs, serviços de terceiros ou mesmo funções/métodos em seu próprio código.
+
+Use fixtures para dados de teste: ao criar mocks para simular respostas de API, é comum usar fixtures para fornecer dados de teste predefinidos. As fixtures podem conter exemplos de respostas JSON que representam diferentes cenários de teste.
+
+Seja específico: ao configurar mocks e stubs, seja específico sobre o que você está simulando e como deseja que eles se comportem. Isso ajuda a garantir que seus testes sejam previsíveis e mantenham um estado consistente.
+
+Evite muitos mocks: embora os mocks sejam úteis para simular comportamentos externos, evite usá-los em excesso. É importante testar a integração real entre os diferentes componentes de sua aplicação sempre que possível.
+
+Estratégias avançadas com Cypress
+Cy.intercept para mockar solicitações HTTP: o cy.intercept é uma função poderosa do Cypress que permite interceptar e mockar solicitações HTTP em seus testes. Isso permite que você simule respostas de API sem a necessidade de um servidor real.
+
+Crie stubs para funções e métodos: use o cy.stub do Cypress para criar stubs para funções e métodos em seu código. Isso permite que você substitua partes específicas de sua aplicação durante os testes e controle seu comportamento.
+
+Teste de edge cases: use mocks e stubs para testar casos de borda e cenários incomuns que podem ser difíceis de reproduzir com dados reais. Isso ajuda a garantir que sua aplicação seja robusta e capaz de lidar com uma variedade de situações.
+------------------------
+A automação de testes é uma prática essencial para garantir a qualidade e a estabilidade de um software em desenvolvimento. O GitHub Actions é capaz de realizar automação de fluxo de trabalho integrado ao GitHub. Combinado com a ferramenta de teste end-to-end Cypress, oferece uma solução eficiente para automatizar o processo de teste em projetos de software. No entanto, como qualquer ferramenta, elas têm suas limitações.
+
+Vamos conhecer algumas de suas soluções?
+
+Integrando Cypress com GitHub Actions
+A integração do Cypress com o GitHub Actions permite automatizar completamente o processo de execução teste de uma aplicação web. Você pode configurar seu fluxo de trabalho no GitHub Actions para clonar o repositório, instalar dependências, realizar um build na aplicação e, em seguida, executar os testes Cypress. Isso tudo pode ser feito em um ambiente controlado e isolado, garantindo a consistência dos resultados do teste.
+
+No entanto, mesmo com essa integração eficiente, há algumas limitações que os desenvolvedores podem enfrentar ao usar o GitHub Actions e o Cypress juntos como: complexidade na configuração do ambiente, desafios na depuração e custos de infraestrutura.
+
+Felizmente, há estratégias para superar essas limitações e obter o máximo valor da automação de teste com GitHub Actions e Cypress:
+
+Experimente otimizar os ambientes de teste no GitHub Actions para garantir que tenham recursos adequados para executar os testes com sucesso. Isso pode envolver a alocação de mais recursos ou a utilização de ambientes mais especializados.
+
+Scripts de configuração: automatize a configuração do ambiente de teste com scripts personalizados. Isso pode simplificar o processo de configuração e garantir a consistência em diferentes execuções de teste.
+
+Configure os fluxos de trabalho do GitHub Actions para gerar logs detalhados e relatórios de teste. Isso pode facilitar a identificação e resolução de problemas quando os testes falham.
+
+Monitore e otimize o uso de recursos de infraestrutura para minimizar os custos associados à automação de teste. Isso pode envolver o uso de estratégias como a execução de testes apenas quando necessário ou o dimensionamento automático da infraestrutura conforme a demanda.
+
+No projeto deste curso, a integração entre configuração de ambiente com Github Actions e a execução dos testes com Cypress no mesmo fluxo de trabalho se tornou ineficiente para testes em requisições ao servidor quando trabalhamos de forma local, ou seja, subir um servidor via Github Actions e executar os testes com Cypress.
+
+Todavia, em uma situação do mundo real, você certamente irá trabalhar com automatização dos processos em um ambiente de homologação. Isso é uma vantagem, pois além de executarmos os testes com Cypress em um ambiente mais próximo do que o usuário final irá encontrar, o Cypress apresenta o comportamento esperado em sua execução nos testes tanto de API quanto front-end.
+
+E o que isso quer dizer?
+
+A automatização de processos em integração contínua e o funcionamento do Cypress funcionam de forma adequada quando o servidor está em deploy. Isso significa que os testes realizados via requisições a API do Vollmed funcionam corretamente quando utilizamos uma url diferente da http://localhost:8080, e sim uma a url do servidor em deploy.
+
+Como fazer os testes em API com Cypress funcionarem em CI com Github Actions?
+1 - Crie um novo repositório para o servidor da Vollmed;
+
+2 - Faça o deploy do servidor:
+
+a) Sugiro a ferramenta Render, pois é gratuita e oferece os recursos necessários para esse servidor em específico.
+3 - Substitua no Cypress as urls que contém o caminho http://localhost:8080 pela url do seu projeto em deploy pelo Render. As rotas continuam as mesmas;
+
+4 - Refatore o seu arquivo cypress.yml para atender as novas especificações. Neste caso você utilizará apenas a Action que configura e roda o Cypress;
+
+5 - Acione a action de forma a permitir a execução dos specs relacionados a API.
+
+Com os passos acima, você consegue reproduzir um ambiente de homologação e realizar os testes necessários tanto no front-end quanto no back-end do Vollmed.
+
+O GitHub Actions e o Cypress auxiliam na automatização do processo de teste em projetos de software. Embora possam apresentar algumas limitações, estas podem ser superadas com estratégias adequadas de configuração, monitoramento e otimização. Com a abordagem certa, você pode aproveitar ao máximo a automação de teste para garantir a qualidade e a estabilidade do seu software.
+-----------------------
+O Cypress Cloud é uma plataforma de gerenciamento de testes baseada na nuvem que oferece aos desenvolvedores uma maneira fácil e eficiente de testar seus aplicativos web e móveis. Ele fornece uma variedade de recursos para ajudar a centralizar informação sobre a documentação, analisar saúde de testes e otimizá-los, incluindo:
+
+Recursos Gratuitos:
+
+Espaço de trabalho privado: cada usuário recebe seu próprio espaço de trabalho privado para armazenar seus testes e dados.
+Executores paralelos: o Cypress Cloud fornece executores paralelos que podem executar seus testes simultaneamente em várias máquinas, o que pode acelerar significativamente o tempo de teste.
+Integração contínua: se integra com ferramentas populares de integração contínua (CI), como Jenkins e CircleCI, para que você possa executar seus testes automaticamente como parte de seu pipeline de CI/CD.
+Relatórios detalhados: gera relatórios detalhados que podem ajudá-lo a identificar e depurar problemas em seus testes.
+Suporte para várias plataformas: suporta testes em uma variedade de navegadores e dispositivos, incluindo Chrome, Firefox, Safari, Edge, iOS e Android.
+---------------------
+A Integração Contínua é uma prática de desenvolvimento de software onde as pessoas desenvolvedoras integram seu trabalho com frequência, geralmente cada pessoa integra pelo menos diariamente. Cada integração é verificada por uma compilação automatizada (incluindo testes) para detectar erros de integração o mais rápido possível.
+
+Integração contínua está diretamente relacionada com a entrega contínua, mais conhecida como CD. A Entrega Contínua é uma disciplina de desenvolvimento de software em que você cria software de forma que ele possa ser colocado em produção a qualquer momento usando automação e ciclos curtos de entrega. Segundo Martin Fowler, você está fazendo entrega contínua quando:
+
+Você pode fazer deploy do seu software durante todo o ciclo de vida;
+Sua equipe prioriza manter o software pronto para deploy em vez de trabalhar em novas funcionalidade;
+Qualquer pessoa pode obter feedback rápido e automatizado sobre quão pronto para entrar em de produção seus sistemas estão, sempre que alguém fizer uma alteração neles;
+Você pode fazer deploy de qualquer versão do software para qualquer ambiente sob demanda simplesmente apertando um botão.
+Mas como integração contínua e entrega contínua estão ligadas?
+
+Você obtém entrega contínua ao integrar continuamente o software feito pela equipe de desenvolvimento, criando executáveis ​​e executando testes automatizados nesses executáveis para detectar problemas.
+
+A integração contínua geralmente se refere à integração, construção e teste de código dentro do ambiente de desenvolvimento. A entrega contínua se baseia nisso, lidando com os estágios finais necessários para a implantação em produção.
+
+Pensando nisso, um ponto fundamental para a implementação de uma integração contínua eficiente é trabalhar com a criação de scripts para automatização de tarefas. Vamos entender com um exemplo:
+
+O arquivo package.json é um arquivo de manifesto em projetos Node.js que define metadata e configurações do projeto, bem como scripts de automação que podem ser executados usando o npm. O Cypress é baseado em Node.js , por isso trabalhamos com package.json. Nesse sentido, podemos adicionar alguns scripts ao package.json para facilitar a execução dos testes Cypress:
+
+O script cypress:open abre a interface do Cypress e lá você pode selecionar e executar manualmente seus testes com o comando npm run cypress:open. Já o script cypress:run executa os testes Cypress em modo headless, ou seja, sem interface gráfica, o que é ideal para execução automatizada em ambientes de CI.
+
+E como podemos chamar nossos scripts via GitHub Actions?
+
+Com os scripts definidos no package.json, você pode integrar facilmente o Cypress em um fluxo de integração contínua usando o GitHub Actions. 
+
+Este fluxo de trabalho é acionado sempre que houver um push na branch main. Ele executa os seguintes passos:
+--------------------
